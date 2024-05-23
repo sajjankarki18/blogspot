@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write Blog</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body style="background-color: rgb(219, 216, 216);">
+  <nav style="margin-bottom: 20px;" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Blogs</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row justify-content-center">
+      <p class="h4 text-center" style="color: red;">Create a new Blog</p>
+      <div class="col-md-9">
+        <div class="card">
+          <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3 m-3">
+              <label>Enter Your Title</label>
+              <input required name="title" type="text" placeholder="Enter a Title" class="form-control">
+            </div>
+
+            <div class="mb-3 m-3">
+              <label for="formFile" class="form-label">Choose a photo for your blog</label>
+              <input required name="image" class="form-control" type="file" id="formFile">
+            </div>
+           <div class="mb-3 m-3">
+            select a category
+            <select  name="category" class="form-select" aria-label="Default select example">
+              <option value="none">Select a category...</option>
+              {% for category in categories %}
+              <option value="{{category.id}}">{{category.name}}</option>
+              {% endfor %}
+            </select>
+           </div>
+           <div class="mb-3 m-3">
+            <label>Create a new category</label>
+            <input name="new_category" type="text" placeholder="Enter a new category" class="form-control">
+           </div>
+            <div class="mb-3 m-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+              <textarea required name="description" placeholder="description" class="form-control" id="exampleFormControlTextarea1"
+                rows="5"></textarea>
+            </div>
+            <button class="btn btn-outline-dark btn-sm m-3">Submit blog</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

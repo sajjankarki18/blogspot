@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body style="margin-top: 80px;">
+    <div class="container">
+        <h1 class="text-center my-4">Login to your accout</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card" style="border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3 m-3">
+                          <label class="form-label">Username</label>
+                          <input name="username" placeholder="enter your username" required class="form-control">
+                          <div id="emailHelp" class="form-text">We'll never share your username with anyone else.</div>
+                        </div>
+                        <div class="mb-3 m-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input name="password" placeholder="enter your password" required type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <button type="submit" class="btn btn-outline-dark btn-sm m-3">Submit</button>
+                    </form>
+                    <p style="margin-left: 15px;">Don't have an account? <a href="{% url 'registerUser' %}">Register here</a></p>
+                </div>
+                {% for message in messages %}
+                <p style="color: red; margin-top: 8px; margin-left: 15px;">{{message}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
