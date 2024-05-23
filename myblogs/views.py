@@ -9,7 +9,12 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='loginUser')
 def index(request):
     category = Category.objects.filter(user=request.user)
-    blogs = Blog.objects.filter(user=request.user)
+    query = request.GET.get('query', '')
+
+    if query:
+        blogs = Blog.objects.filter(user=request.user, title__icontains=query)
+    else:
+        blogs = Blog.objects.filter(user=request.user)
 
     return render(request, 'index.html', {'category': category, 'blogs': blogs})
 

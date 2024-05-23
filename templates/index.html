@@ -29,7 +29,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Your Blogs</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Your Blogs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -53,8 +53,11 @@
   </nav>
 
   <div class="container my-4 d-flex justify-content-center">
-    <form class="col-12 col-lg-6">
-      <input type="search" class="form-control form-control-dark" placeholder="Search a category..." aria-label="Search">
+    <form class="col-12 col-lg-6" method="GET" action="{% url 'index' %}">
+      <div style="display: flex;">
+        <input type="search" name="query" class="form-control form-control-dark" placeholder="Search a blog..." aria-label="Search">
+        <button class="btn btn-outline-dark btn-sm mx-2">search</button>
+      </div>
     </form>
   </div>
 
