@@ -11,9 +11,9 @@
 
 </head>
 
-<body class="m-5" style="background-color: rgb(219, 216, 216);">
+<body style="background-color: rgb(219, 216, 216);">
     <div class="container">
-        <a href="{% url 'index' %}" class="btn btn-outline-dark my-2">go back</a>
+        <a href="{% url 'index' %}" style="margin-left: 12px;" class="btn btn-outline-dark btn-sm mt-3">Home</a>
         {% for blog in blogs reversed %}
         <div class="card m-3" style=" max-width: 550px;border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <div class="row g-0" style="padding: 10px;">
