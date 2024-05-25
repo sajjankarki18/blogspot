@@ -43,7 +43,7 @@
             <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Your Blogs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="{% url 'blogfeed' %}">Blogfeed</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -78,7 +78,7 @@
     <div class="row">
       {% for blog in blogs reversed %}
       <div class="col-md-6 mb-3">
-        <div class="card" style="max-width: 540px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+        <div class="card" style="width: 540px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
           <div class="row g-0" style="padding: 10px;">
             <div class="col-md-3">
               {% if blog.image %}
@@ -90,7 +90,7 @@
             <div class="col-md-9">
               <div class="card-body">
                 <h5 class="card-title"><b>{{ blog.title }}</b></h5>
-                <p class="card-text">{{ blog.description|truncatewords:20 }}</p>
+                <p class="card-text">{{ blog.description|truncatewords:13 }}</p>
                 <p class="text-muted" style="margin: 0;">- {{user.username}}</p>
                 <p class="card-text">
                   <small class="text-muted">{{ blog.created_at }}

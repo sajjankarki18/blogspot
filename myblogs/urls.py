@@ -8,6 +8,7 @@ urlpatterns = [
     path('yourBlog/<str:pk>/', views.yourBlog, name='yourBlog'),
     path('editBlog/<str:pk>/', views.editBlog, name='editBlog'),
     path('deleteBlog/<str:pk>/', views.deleteBlog, name='deleteBlog'),
+    path('blogfeed/', views.blogfeed, name='blogfeed'),
 
     # authentcation views
     path('loginUser/', auth_views.loginUser, name='loginUser'),

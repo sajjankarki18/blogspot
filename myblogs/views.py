@@ -54,7 +54,10 @@ def writeBlog(request):
 
 @login_required(login_url='loginUser')
 def yourBlog(request, pk):
-    blogs = Blog.objects.get(id = pk, user=request.user)
+    if request.user == User:
+        blogs = Blog.objects.get(id = pk, user=request.user)
+    else:
+        blogs = Blog.objects.get(id=pk)
 
     return render(request, 'yourBlog.html', {'blogs': blogs})
 
@@ -76,3 +79,8 @@ def deleteBlog(request, pk):
     blogs = get_object_or_404(Blog, id = pk, user=request.user)
     blogs.delete()
     return redirect('index')
+
+@login_required(login_url='loginUser')
+def blogfeed(request):
+    blogs = Blog.objects.exclude(user=request.user)
+    return render(request, 'blogfeed.html', {'blogs': blogs})
