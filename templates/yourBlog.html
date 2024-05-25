@@ -38,6 +38,14 @@
                   <a href="{% url 'editBlog' blogs.id %}" class="btn btn-outline-dark btn-sm">
                     <i class="bi bi-pencil"></i>
                   </a>
+                  {% else %}
+                  <form method="POST" action="">
+                    {% csrf_token %}
+                    <div style="display: flex;">
+                      <input type="text" placeholder="comment here...">
+                      <button href="{% url 'yourBlog' blogs.id %}" class="btn btn-outline-dark">submit</button>
+                    </div>
+                  </form>
                   {% endif %}
                 </div>
             </div>
