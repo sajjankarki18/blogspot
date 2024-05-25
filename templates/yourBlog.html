@@ -25,32 +25,53 @@
         </div>
     </nav>
     <div class="container">
-      <a href="{% url 'index' %}"  class="btn btn-dark btn-sm my-3">Go Back</a>
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-              <div class="card mb-3" style="padding: 10px;">
-                <img style="width: 200px;" src="{{blogs.image.url}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">{{blogs.title}}</h5>
-                  <p class="card-text">{{blogs.description|linebreaks}}</p>
-                  <p class="card-text"><small class="text-muted">{{blogs.created_at}}</small></p>
-                  {% if blogs.user == user %}
-                  <a href="{% url 'editBlog' blogs.id %}" class="btn btn-outline-dark btn-sm">
-                    <i class="bi bi-pencil"></i>
-                  </a>
-                  {% else %}
-                  <form method="POST" action="">
-                    {% csrf_token %}
-                    <div style="display: flex;">
-                      <input type="text" placeholder="comment here...">
-                      <button href="{% url 'yourBlog' blogs.id %}" class="btn btn-outline-dark">submit</button>
-                    </div>
-                  </form>
-                  {% endif %}
+      <a href="{% url 'index' %}" class="btn btn-dark btn-sm my-3">Go Back</a>
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="card mb-3" style="padding: 10px;">
+            <img style="width: 200px;" src="{{blogs.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{blogs.title}}</h5>
+              <p class="card-text">{{blogs.description|linebreaks}}</p>
+              <p class="card-text"><small class="text-muted">{{blogs.created_at}}</small></p>
+              {% if blogs.user == user %}
+              <a href="{% url 'editBlog' blogs.id %}" class="btn btn-outline-dark btn-sm">
+                <i class="bi bi-pencil"></i>
+              </a>
+              <div class="comments-section" style="margin-top: 20px;">
+                <h6>Comments:</h6>
+                {% for comment in comments %}
+                <div class="comment" style="margin-bottom: 10px;">
+                  <strong>{{ comment.user.username }}:</strong>
+                  <p style="margin-bottom: 0;">{{ comment.comment }}</p>
+                  <small style="margin-top: 0; font-size: 12px;" class="text-muted">{{ comment.created_at }}</small>
                 </div>
+                {% endfor %}
+              </div>
+              {% else %}
+              <form method="POST" action="">
+                {% csrf_token %}
+                <div style="display: flex; margin-top: 10px;">
+                  <input name="comment_text" type="text" placeholder="comment here..." class="form-control" required>
+                  <button type="submit" class="btn btn-outline-dark">Post</button>
+                </div>
+              </form>
+    
+              <div class="comments-section" style="margin-top: 20px;">
+                <h6>Comments:</h6>
+                {% for comment in comments %}
+                <div class="comment" style="margin-bottom: 10px;">
+                  <strong>{{ comment.user.username }}:</strong>
+                  <p style="margin-bottom: 0;">{{ comment.comment }}</p>
+                  <small style="margin-top: 0; font-size: 12px;" class="text-muted">{{ comment.created_at }}</small>
+                </div>
+                {% endfor %}
+              </div>
+              {% endif %}
             </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
 </body>
 </html>

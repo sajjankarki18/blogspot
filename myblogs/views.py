@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
-from .models import Category, Blog
+from .models import Category, Blog, Comment
 from django.contrib.auth.models import User
 from .import auth_views
 from django.contrib.auth.decorators import login_required
@@ -54,12 +54,25 @@ def writeBlog(request):
 
 @login_required(login_url='loginUser')
 def yourBlog(request, pk):
+    blogs = get_object_or_404(Blog, id=pk)
+    comments = blogs.comment_set.all()
+
     if request.user == User:
         blogs = Blog.objects.get(id = pk, user=request.user)
     else:
         blogs = Blog.objects.get(id=pk)
 
-    return render(request, 'yourBlog.html', {'blogs': blogs})
+    if request.method == 'POST':
+        comment_text = request.POST.get('comment_text', '')
+
+        if comment_text:
+            Comment.objects.create(
+                user=request.user,
+                comment = comment_text,
+                blog=blogs,
+                created_by=request.user.username,
+            )    
+    return render(request, 'yourBlog.html', {'blogs': blogs, 'comments': comments})
 
 @login_required(login_url='loginUser')
 def editBlog(request, pk):
