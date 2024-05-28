@@ -1,0 +1,30 @@
+.custom-card {
+    max-width: 540px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 100%; /* Ensure the card takes full height */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Spread the content vertically */
+}
+
+.card-text {
+    flex-grow: 1;
+}
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+}
+
+.col-md-6 {
+    display: flex;
+    align-items: stretch; /* Make all cards stretch to the same height */
+}
+
+.row.g-0 {
+    height: 100%; /* Ensure the inner row takes full height */
+}

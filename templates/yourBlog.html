@@ -25,7 +25,7 @@
         </div>
     </nav>
     <div class="container">
-      <a href="{% url 'index' %}" class="btn btn-dark btn-sm my-3">Go Back</a>
+      <a href="{% url 'index' %}" class="btn btn-outline-dark btn-sm my-3">Go Back</a>
       <div class="row justify-content-center">
         <div class="col-md-12">
           <div class="card mb-3" style="padding: 10px;">
@@ -67,6 +67,9 @@
                 </div>
                 {% endfor %}
               </div>
+              {% endif %}
+              {% if not comments %}
+              <p style="color: red;">no comments yet...</p>
               {% endif %}
             </div>
           </div>
