@@ -23,8 +23,8 @@ class Blog(models.Model):
     
 class Comment(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, default=1)
-    blog = models.ForeignKey(Blog, blank=True, null=True, on_delete=models.SET_NULL)    
-    comment = models.TextField(max_length=500, null=False, blank=False, default='no comments')
+    blog = models.ForeignKey(Blog, blank=True, null=True, on_delete=models.CASCADE)    
+    comment = models.TextField()
     created_at = models.DateTimeField(default=datetime.now, blank=True)
     created_by = models.CharField(max_length=100, null=False, default=False)
 

@@ -94,6 +94,13 @@ def deleteBlog(request, pk):
     return redirect('index')
 
 @login_required(login_url='loginUser')
+def deleteComment(request, pk):
+    comments = get_object_or_404(Comment, id = pk, user=request.user)
+    blog_pk = comments.blog.pk
+    comments.delete()
+    return redirect('yourBlog', pk=blog_pk)
+
+@login_required(login_url='loginUser')
 def blogfeed(request):
     blogs = Blog.objects.exclude(user=request.user)
     return render(request, 'blogfeed.html', {'blogs': blogs})
