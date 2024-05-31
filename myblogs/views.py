@@ -104,3 +104,5 @@ def deleteComment(request, pk):
 def blogfeed(request):
     blogs = Blog.objects.exclude(user=request.user)
     return render(request, 'blogfeed.html', {'blogs': blogs})
+
+

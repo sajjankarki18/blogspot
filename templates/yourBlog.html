@@ -35,7 +35,7 @@
       <a href="{% url 'index' %}" class="btn btn-outline-dark btn-sm my-3">Go Back</a>
       <div class="row justify-content-center">
         <div class="col-md-12">
-          <div class="card mb-3" style="padding: 10px;">
+          <div class="card mb-3" style="padding: 10px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
             <img style="width: 200px;" src="{{blogs.image.url}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{blogs.title}}</h5>
@@ -44,6 +44,9 @@
               {% if blogs.user == user %}
               <a href="{% url 'editBlog' blogs.id %}" class="btn btn-outline-dark btn-sm">
                 <i class="bi bi-pencil"></i>
+              </a>
+              <a href="{% url 'deleteBlog' blogs.id %}" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-trash3"></i>
               </a>
               <div class="comments-section" style="margin-top: 20px;">
                 <h6>Comments:</h6>
