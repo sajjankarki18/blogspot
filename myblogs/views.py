@@ -18,6 +18,7 @@ def index(request):
 
     return render(request, 'index.html', {'category': category, 'blogs': blogs})
 
+#write blog view
 @login_required(login_url='loginUser')
 def writeBlog(request):
     user = request.user
@@ -52,6 +53,7 @@ def writeBlog(request):
     
     return render(request, 'writeBlog.html', {'categories': categories})
 
+# your current blog view
 @login_required(login_url='loginUser')
 def yourBlog(request, pk):
     blogs = get_object_or_404(Blog, id=pk)
@@ -74,6 +76,7 @@ def yourBlog(request, pk):
             )    
     return render(request, 'yourBlog.html', {'blogs': blogs, 'comments': comments})
 
+# view for editing the blog
 @login_required(login_url='loginUser')
 def editBlog(request, pk):
     blogs = Blog.objects.get(id = pk, user=request.user)
@@ -87,12 +90,14 @@ def editBlog(request, pk):
     
     return render(request, 'editBlog.html', {'blogs': blogs})
 
+# view for deleting the blog
 @login_required(login_url='loginUser')
 def deleteBlog(request, pk):
     blogs = get_object_or_404(Blog, id = pk, user=request.user)
     blogs.delete()
     return redirect('index')
 
+# view for deleting the comment
 @login_required(login_url='loginUser')
 def deleteComment(request, pk):
     comments = get_object_or_404(Comment, id = pk, user=request.user)
@@ -100,9 +105,13 @@ def deleteComment(request, pk):
     comments.delete()
     return redirect('yourBlog', pk=blog_pk)
 
+# view for viewing other's blog
 @login_required(login_url='loginUser')
 def blogfeed(request):
     blogs = Blog.objects.exclude(user=request.user)
     return render(request, 'blogfeed.html', {'blogs': blogs})
 
-
+# view for user profile
+@login_required(login_url='loginUser')
+def profile(request):
+    return render(request, 'profile.html')
