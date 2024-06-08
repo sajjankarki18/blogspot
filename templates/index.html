@@ -16,10 +16,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css">
 </head>
 
-<body style="background-color: rgb(219, 216, 216); margin-bottom: 1000px;">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-sm-top">
+<body style="bottom: 1000px;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-sm-top">
     <div class="container-fluid">
-      <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" style="margin-right: 10px;">
       {% if user.is_authenticated %}
       <a class="navbar-brand" href="#">{{user.username}}</a>
       {% endif %}
@@ -35,18 +34,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blogfeed' %}">Blogfeed</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              write
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="{% url 'writeBlog' %}">write a new blog</a></li>
-              <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-            </ul>
-          </li>
         </ul>
         <form class="d-flex">
+          <input type="search" name="query" class="form-control" placeholder="Search a blog..." aria-label="Search" style="margin-right: 5px;">
           <a href="{% url 'logoutUser' %}" class="btn btn-outline-success">logout</a>
         </form>
       </div>
@@ -54,21 +44,14 @@
   </nav>
 
   <div class="container my-4 d-flex justify-content-center">
-    <form class="col-12 col-lg-6" method="GET" action="{% url 'index' %}">
-      <div style="display: flex;">
-        <input type="search" name="query" class="form-control form-control-dark" placeholder="Search a blog..." aria-label="Search">
-        <button class="btn btn-outline-dark btn-sm mx-2" data-bs-placement="top" title="Search Post">
-          <i class="bi bi-search"></i>
-        </button>
-      </div>
-    </form>
+    <a class="btn btn-outline-success" href="{% url 'writeBlog' %}">Add a Blog +</a>
   </div>
 
   <div class="container">
     <div class="row justify-content-center">
       {% for blog in blogs reversed %}
       <div class="col-md-6 mb-3">
-        <div class="card h-100" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+        <div class="card h-100" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
           <div class="row g-0">
             <div class="col-md-4">
               {% if blog.image %}
@@ -106,6 +89,12 @@
       </div>
     </div>
     {% endif %}
+  </div>
+
+  <div class="container">
+    <h5 class="mt-5 text-center">Blogspot</h5>
+    <p class="lead text-center">All rights reserved by ©sajankarki 2024</p>
+    <p class="text-center">Use <a href="{% url 'index' %}">Go top</a> if need be, too.</p>
   </div>
 </body>
 </html>

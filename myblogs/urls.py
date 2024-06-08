@@ -10,7 +10,7 @@ urlpatterns = [
     path('deleteBlog/<str:pk>/', views.deleteBlog, name='deleteBlog'),
     path('deleteComment/<str:pk>/', views.deleteComment, name='deleteComment'),
     path('blogfeed/', views.blogfeed, name='blogfeed'),
-    path('profile/', views.profile, name='profile'),
+    # path('profile/', views.profile, name='profile'),
 
     # authentcation views
     path('loginUser/', auth_views.loginUser, name='loginUser'),

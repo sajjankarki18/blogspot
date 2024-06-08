@@ -11,9 +11,14 @@
 
 </head>
 
-<body style="background-color: rgb(219, 216, 216);">
-    <div class="container-fluid">
+<body>
+    <div class="container" style="display: flex; align-items: center; justify-content: space-evenly;">
         <a href="{% url 'index' %}" style="margin-left: 12px;" class="btn btn-outline-dark btn-sm mt-3">Home</a>
+        <form>
+            <input type="search" name="query" class="form-control mt-2" placeholder="Search a blog" aria-label="Search">
+        </form>
+    </div>
+    <div class="container-fluid">
         <div class="row justify-content-center">
             {% for blog in blogs reversed %}
             <div class="col-md-8 col-lg-6">
