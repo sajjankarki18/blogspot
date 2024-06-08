@@ -109,12 +109,6 @@ def deleteComment(request, pk):
 @login_required(login_url='loginUser')
 def blogfeed(request):
     blogs = Blog.objects.exclude(user=request.user)
-    query = request.GET.get('query', '')
-
-    if query:
-        blogs = Blog.objects.filter(user=request.user, title__icontains=query)
-    else:
-        blogs = Blog.objects.filter(user=request.user)
         
     return render(request, 'blogfeed.html', {'blogs': blogs})
 
